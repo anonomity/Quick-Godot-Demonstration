@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4kee1mdmnybl"]
+
+[ext_resource type="Texture2D" uid="uid://6j0o4b3boqbc" path="res://tiles.png" id="1_sfjan"]
+[ext_resource type="PackedScene" uid="uid://elbk6vu2gvcf" path="res://player.tscn" id="2_ybm2t"]
+
+[sub_resource type="GDScript" id="GDScript_ttash"]
+script/source = "extends Node2D
+
+
+
+
+func _on_area_2d_body_entered(body):
+	get_tree().change_scene_to_file(\"res://level_1.tscn\")
+"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2woat"]
+texture = ExtResource("1_sfjan")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.23785, 7.06309, -3.97299, 6.70993, 8, -6.70993, 8, -6.9748, -4.23785, -8, -4.59101)
+
+[sub_resource type="TileSet" id="TileSet_hmcrl"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_2woat")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obwas"]
+size = Vector2(1360, 20)
+
+[node name="level1" type="Node2D"]
+script = SubResource("GDScript_ttash")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_hmcrl")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 196608, 0, 0, 196608, 0, 1, 196608, 0, 2, 196608, 0, -65529, 196608, 0, -65528, 196608, 0, -65527, 196608, 0, -65526, 196608, 0, -196592, 196608, 0, -196591, 196608, 0, -196590, 196608, 0, -196589, 196608, 0, -196588, 196608, 0, -65508, 196608, 0, -65507, 196608, 0, -65506, 196608, 0, -65505, 196608, 0, -65504, 196608, 0)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_ybm2t")]
+position = Vector2(0, -7)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(4.46, 4.46)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(313, 188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_obwas")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

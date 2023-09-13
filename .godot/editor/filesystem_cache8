@@ -1,0 +1,6 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1694598038
+icon.svg::CompressedTexture2D::7655652904058979120::1694593053::1694593057::1::::<><>::
+level_1.tscn::PackedScene::6829213005874062229::1694596952::0::1::::<><>::uid://6j0o4b3boqbc::::res://tiles.png
+player.tscn::PackedScene::303543766388399421::1694596952::0::1::::<><>::uid://dhcpqqptb2nhg::::res://icon.svg
+tiles.png::CompressedTexture2D::2195978004495427620::1694594128::1694594128::1::::<><>::
