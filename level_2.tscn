@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4kee1mdmnybl"]
+[gd_scene load_steps=10 format=3 uid="uid://d1duv4mjastyb"]
 
-[ext_resource type="Texture2D" uid="uid://6j0o4b3boqbc" path="res://tiles.png" id="1_sfjan"]
-[ext_resource type="Texture2D" uid="uid://cuai3a7yiq42e" path="res://tileset.png" id="2_u1qub"]
-[ext_resource type="PackedScene" uid="uid://elbk6vu2gvcf" path="res://player.tscn" id="2_ybm2t"]
+[ext_resource type="Texture2D" uid="uid://6j0o4b3boqbc" path="res://tiles.png" id="1_aq88j"]
+[ext_resource type="Texture2D" uid="uid://cuai3a7yiq42e" path="res://tileset.png" id="2_syy6v"]
+[ext_resource type="PackedScene" uid="uid://elbk6vu2gvcf" path="res://player.tscn" id="3_s4xhf"]
 
 [sub_resource type="GDScript" id="GDScript_ttash"]
 script/source = "extends Node2D
@@ -12,14 +12,10 @@ script/source = "extends Node2D
 
 func _on_area_2d_body_entered(body):
 	get_tree().change_scene_to_file(\"res://level_1.tscn\")
-
-
-func _on_next_level_body_entered(body):
-	get_tree().change_scene_to_file(\"res://level_2.tscn\")
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2woat"]
-texture = ExtResource("1_sfjan")
+texture = ExtResource("1_aq88j")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -35,7 +31,7 @@ texture = ExtResource("1_sfjan")
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.23785, 7.06309, -3.97299, 6.70993, 8, -6.70993, 8, -6.9748, -4.23785, -8, -4.59101)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3vbut"]
-texture = ExtResource("2_u1qub")
+texture = ExtResource("2_syy6v")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -187,15 +183,15 @@ size = Vector2(1360, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7gy3o"]
 radius = 19.105
 
-[node name="level1" type="Node2D"]
+[node name="level2" type="Node2D"]
 script = SubResource("GDScript_ttash")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_hmcrl")
 format = 2
-layer_0/tile_data = PackedInt32Array(131070, 196609, 0, 131071, 262145, 0, 65536, 262145, 0, 65537, 327681, 0, -65532, 1, 0, 4, 1, 2, 5, 65537, 2, 6, 65537, 2, 7, 131073, 2, -65529, 131073, 0, -65530, 65537, 0, -65531, 65537, 0, -65525, 196609, 0, -65524, 262145, 0, -65523, 327681, 0, -131053, 393217, 0, -65520, 393217, 0, -131050, 196609, 0, -131049, 262145, 0, -131048, 262145, 0, -131047, 262145, 0, -131046, 262145, 0, -131045, 327681, 0, -196579, 196609, 0, -196578, 262145, 0, -196577, 262145, 0, -196576, 262145, 0, -196575, 327681, 0)
+layer_0/tile_data = PackedInt32Array(65540, 131073, 0, 65539, 65537, 0, 65538, 65537, 0, 65537, 65537, 0, 196606, 65537, 0, 196607, 65537, 1, 65536, 65537, 0, 196604, 65537, 0, 196605, 65537, 0, 196602, 65537, 0, 196603, 65537, 0, 196600, 1, 0, 196601, 65537, 0, 262136, 1, 1, 327674, 65537, 1, 262137, 65537, 1, 327677, 65537, 1, 327676, 65537, 1, 327675, 65537, 1, 327680, 65537, 1, 393215, 65537, 1, 327678, 65537, 1, 327683, 65537, 2, 327682, 65537, 1, 327681, 65537, 1, 327685, 65537, 2, 327684, 65537, 2, 262151, 131073, 2, 327686, 131073, 2, 196615, 131073, 0, 196614, 65537, 1, 131075, 65537, 1, 131076, 65537, 1, 196613, 65537, 1, 131072, 65537, 1, 131073, 65537, 1, 131074, 65537, 1, 327671, 1, 0, 393208, 65537, 1, 458745, 1, 2, 458747, 65537, 2, 458746, 65537, 2, 458750, 65537, 2, 458749, 65537, 2, 458748, 65537, 2, 458751, 65537, 2, 262146, 65537, 1, 196611, 65537, 1, 131071, 1, 0, 262140, 65537, 1, 393211, 65537, 1, 393216, 65537, 2, 393217, 65537, 2, 262148, 65537, 1, 262149, 65537, 1, 131077, 131073, 1, 262141, 65537, 1, 393213, 65537, 1, 393214, 65537, 1, 196612, 65537, 1, 262139, 65537, 1, 327673, 65537, 1, 262138, 65537, 1, 393209, 65537, 1, 196608, 65537, 1, 262145, 65537, 1, 262142, 65537, 1, 262143, 65537, 1, 393218, 131073, 2, 262150, 65537, 1, 196609, 65537, 1, 196610, 65537, 1, 262147, 65537, 1, 327679, 65537, 1, 262144, 65537, 1, 393210, 65537, 1, 393212, 65537, 1, 393207, 65537, 2, 327672, 65537, 1, 393206, 1, 2)
 
-[node name="CharacterBody2D" parent="." groups=["Player"] instance=ExtResource("2_ybm2t")]
+[node name="CharacterBody2D" parent="." groups=["Player"] instance=ExtResource("3_s4xhf")]
 position = Vector2(0, -7)
 collision_layer = 2
 
@@ -215,11 +211,9 @@ shape = SubResource("RectangleShape2D_obwas")
 
 [node name="next_level" type="Area2D" parent="."]
 position = Vector2(527, -64)
-collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="next_level"]
 shape = SubResource("CircleShape2D_7gy3o")
 
 [connection signal="body_entered" from="death_area" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="next_level" to="." method="_on_next_level_body_entered"]

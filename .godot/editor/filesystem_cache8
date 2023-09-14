@@ -1,6 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1694598038
+::res://::1694688002
+cartoon-jump-6462.mp3::AudioStreamMP3::7744121323042248902::1694685399::1694687151::1::::<><>::
 icon.svg::CompressedTexture2D::7655652904058979120::1694593053::1694593057::1::::<><>::
-level_1.tscn::PackedScene::6829213005874062229::1694596952::0::1::::<><>::uid://6j0o4b3boqbc::::res://tiles.png
-player.tscn::PackedScene::303543766388399421::1694596952::0::1::::<><>::uid://dhcpqqptb2nhg::::res://icon.svg
+level_1.tscn::PackedScene::6829213005874062229::1694688034::0::1::::<><>::uid://6j0o4b3boqbc::::res://tiles.png<>uid://cuai3a7yiq42e::::res://tileset.png<>uid://elbk6vu2gvcf::::res://player.tscn
+mushroom_sprite_sheet.png::CompressedTexture2D::4420646812389563876::1694675728::1694687151::1::::<><>::
+player.tscn::PackedScene::303543766388399421::1694688002::0::1::::<><>::uid://b38nn3wb1447i::::res://mushroom_sprite_sheet.png<>uid://dilksub4mpn8y::::res://cartoon-jump-6462.mp3
+level_2.tscn::PackedScene::8991618502582112813::1694688038::0::1::::<><>::uid://6j0o4b3boqbc::::res://tiles.png<>uid://cuai3a7yiq42e::::res://tileset.png<>uid://elbk6vu2gvcf::::res://player.tscn
 tiles.png::CompressedTexture2D::2195978004495427620::1694594128::1694594128::1::::<><>::
+tileset.png::CompressedTexture2D::6177154028853864078::1694680270::1694687151::1::::<><>::

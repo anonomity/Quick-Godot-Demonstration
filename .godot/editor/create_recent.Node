@@ -1,6 +1,9 @@
-Camera2D
 CollisionShape2D
 Area2D
+AudioStreamPlayer2D
+AnimationPlayer
+RigidBody2D
+Camera2D
 Sprite2D
 CharacterBody2D
 TileMap
