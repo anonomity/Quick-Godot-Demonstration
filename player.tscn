@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://elbk6vu2gvcf"]
 
 [ext_resource type="Texture2D" uid="uid://b38nn3wb1447i" path="res://mushroom_sprite_sheet.png" id="1_nbl67"]
-[ext_resource type="AudioStream" uid="uid://dilksub4mpn8y" path="res://cartoon-jump-6462.mp3" id="2_0fd7m"]
+[ext_resource type="AudioStream" uid="uid://htw03tooe2b" path="res://jump.mp3" id="2_fgr8k"]
 
 [sub_resource type="GDScript" id="GDScript_samcn"]
 script/source = "extends CharacterBody2D
@@ -58,23 +58,6 @@ func _physics_process(delta):
 radius = 5.0
 height = 18.0
 
-[sub_resource type="Animation" id="Animation_lwss3"]
-resource_name = "run"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_fmvd2"]
 length = 0.001
 tracks/0/type = "value"
@@ -123,6 +106,23 @@ tracks/0/keys = {
 "values": [7]
 }
 
+[sub_resource type="Animation" id="Animation_lwss3"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3oki5"]
 _data = {
 "RESET": SubResource("Animation_fmvd2"),
@@ -136,13 +136,12 @@ script = SubResource("GDScript_samcn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 9.09495e-13)
-scale = Vector2(0.37, 0.37)
 texture = ExtResource("1_nbl67")
 hframes = 8
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_svwsx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -152,4 +151,4 @@ libraries = {
 }
 
 [node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_0fd7m")
+stream = ExtResource("2_fgr8k")
