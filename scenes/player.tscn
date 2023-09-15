@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://elbk6vu2gvcf"]
+[gd_scene load_steps=10 format=3 uid="uid://beco2ueqsa1y2"]
 
-[ext_resource type="Texture2D" uid="uid://b38nn3wb1447i" path="res://mushroom_sprite_sheet.png" id="1_nbl67"]
-[ext_resource type="AudioStream" uid="uid://htw03tooe2b" path="res://jump.mp3" id="2_fgr8k"]
+[ext_resource type="Texture2D" uid="uid://b38nn3wb1447i" path="res://assets/mushroom_sprite_sheet.png" id="1_avcd7"]
+[ext_resource type="AudioStream" uid="uid://htw03tooe2b" path="res://sounds/jump.mp3" id="2_fgr8k"]
 
 [sub_resource type="GDScript" id="GDScript_samcn"]
 script/source = "extends CharacterBody2D
@@ -136,7 +136,7 @@ script = SubResource("GDScript_samcn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 9.09495e-13)
-texture = ExtResource("1_nbl67")
+texture = ExtResource("1_avcd7")
 hframes = 8
 frame = 1
 
@@ -152,3 +152,4 @@ libraries = {
 
 [node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_fgr8k")
+volume_db = -6.5

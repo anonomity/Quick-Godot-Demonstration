@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b38nn3wb1447i"
-path="res://.godot/imported/mushroom_sprite_sheet.png-a63de898acf6e7a88154143af6e08036.ctex"
+uid="uid://cuai3a7yiq42e"
+path="res://.godot/imported/tileset.png-c50288acd069fa293d7940a084811264.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mushroom_sprite_sheet.png"
-dest_files=["res://.godot/imported/mushroom_sprite_sheet.png-a63de898acf6e7a88154143af6e08036.ctex"]
+source_file="res://assets/tileset.png"
+dest_files=["res://.godot/imported/tileset.png-c50288acd069fa293d7940a084811264.ctex"]
 
 [params]
 

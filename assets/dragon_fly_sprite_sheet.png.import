@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuai3a7yiq42e"
-path="res://.godot/imported/tileset.png-a39e944f25b35d62f55d4f98a36e2b5e.ctex"
+uid="uid://bsb5e254llc2d"
+path="res://.godot/imported/dragon_fly_sprite_sheet.png-b51669f5ec195ae75fd0954c863e73c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileset.png"
-dest_files=["res://.godot/imported/tileset.png-a39e944f25b35d62f55d4f98a36e2b5e.ctex"]
+source_file="res://assets/dragon_fly_sprite_sheet.png"
+dest_files=["res://.godot/imported/dragon_fly_sprite_sheet.png-b51669f5ec195ae75fd0954c863e73c8.ctex"]
 
 [params]
 
