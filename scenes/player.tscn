@@ -92,7 +92,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_3ly4i"]
 resource_name = "jump"
-length = 0.1
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
