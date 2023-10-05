@@ -6,14 +6,14 @@
 script/source = "extends Area2D
 
 
-var speed = 200
+var speed = 400
 
 func _process(delta):
 	position += transform.x * speed * delta
 
 
 func _on_body_entered(body):
-	body.queue_free()
+	body.die()
 	queue_free()
 
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://crc2wnwfj1i2i"]
+[gd_scene load_steps=14 format=3 uid="uid://crc2wnwfj1i2i"]
 
 [ext_resource type="Script" path="res://scripts/dragon_fly.gd" id="1_f4scw"]
 [ext_resource type="Texture2D" uid="uid://bsb5e254llc2d" path="res://assets/dragon_fly_sprite_sheet.png" id="1_irhuj"]
+[ext_resource type="PackedScene" uid="uid://c1n7puod5rjy1" path="res://scenes/splat.tscn" id="3_tr3af"]
+[ext_resource type="AudioStream" uid="uid://cw4i4wjg2plsn" path="res://sounds/squish.mp3" id="4_a6fde"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwpvs"]
 atlas = ExtResource("1_irhuj")
@@ -41,6 +43,104 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g5u4v"]
 
+[sub_resource type="Animation" id="Animation_tvk8d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_g5kox"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("splat:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"delete"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1bs47"]
+_data = {
+"RESET": SubResource("Animation_tvk8d"),
+"die": SubResource("Animation_g5kox")
+}
+
 [node name="dragon" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_f4scw")
@@ -53,3 +153,15 @@ frame_progress = 0.777869
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g5u4v")
+
+[node name="splat" parent="." instance=ExtResource("3_tr3af")]
+position = Vector2(0, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1bs47")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_a6fde")
+volume_db = -8.587

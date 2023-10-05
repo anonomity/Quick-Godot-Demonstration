@@ -5,6 +5,9 @@ extends CharacterBody2D
 @export var speed : float
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var splat = $splat
+@onready var animation_player = $AnimationPlayer
+
 
 var past_x = null
 
@@ -19,3 +22,9 @@ func _physics_process(delta):
 	
 	if path_follow:
 		path_follow.progress_ratio +=  speed * delta
+
+func die():
+	animation_player.play("die")
+	
+func delete():
+	queue_free()
