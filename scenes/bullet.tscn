@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://lnv50f4qem1c"]
+
+[ext_resource type="Texture2D" uid="uid://7ns1ipjihwj2" path="res://assets/pollen_butllet.png" id="1_l0s65"]
+
+[sub_resource type="GDScript" id="GDScript_kxbv3"]
+script/source = "extends Area2D
+
+
+var speed = 400
+
+func _process(delta):
+	position += transform.x * speed * delta
+
+
+func _on_body_entered(body):
+	body.die()
+	queue_free()
+
+
+func _on_timer_timeout():
+	queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbe1g"]
+radius = 3.0
+
+[node name="bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = SubResource("GDScript_kxbv3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l0s65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jbe1g")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

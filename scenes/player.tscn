@@ -1,0 +1,199 @@
+[gd_scene load_steps=12 format=3 uid="uid://beco2ueqsa1y2"]
+
+[ext_resource type="Texture2D" uid="uid://b38nn3wb1447i" path="res://assets/mushroom_sprite_sheet.png" id="1_avcd7"]
+[ext_resource type="AudioStream" uid="uid://htw03tooe2b" path="res://sounds/jump.mp3" id="2_fgr8k"]
+[ext_resource type="Texture2D" uid="uid://b62oclm0dda60" path="res://assets/gun.png" id="3_ifhl5"]
+[ext_resource type="AudioStream" uid="uid://b785fd73i1pdj" path="res://sounds/gunshot.wav" id="4_pkegu"]
+
+[sub_resource type="GDScript" id="GDScript_samcn"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+@onready var sprite_2d = $Sprite2D
+@onready var animation_player = $AnimationPlayer
+@onready var jump_sound = $jump_sound
+@onready var marker_2d = $Node2D/tool_sprite/Marker2D
+
+@export var bullets_node : Node2D
+@onready var gunshot = $gunshot
+
+@onready var node_2d = $Node2D
+@onready var tool_sprite = $Node2D/tool_sprite
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+var _bullet = preload(\"res://scenes/bullet.tscn\")
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Handle Jump.
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		jump_sound.play()
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis(\"left\", \"right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	
+	if velocity.x != 0 and is_on_floor():
+		animation_player.play(\"run\")
+	else:
+		animation_player.play(\"idle\")
+	
+	if !is_on_floor():
+		animation_player.play(\"jump\")
+		
+	if velocity.x >= 0:
+		sprite_2d.flip_h = false
+	else:
+		sprite_2d.flip_h = true
+	
+	move_and_slide()
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		var mouse_pos = get_global_mouse_position()
+		node_2d.look_at(mouse_pos)
+		
+		if mouse_pos.x < node_2d.global_position.x:
+			tool_sprite.scale = Vector2(1,-1)
+		elif mouse_pos.x > node_2d.global_position.x:
+			tool_sprite.scale =  Vector2(1,1)
+	
+	if Input.is_action_just_pressed(\"shoot\"):
+		shoot()
+		
+
+func shoot():
+	var bullet = _bullet.instantiate()
+	bullets_node.add_child(bullet)
+	bullet.global_position = marker_2d.global_position
+	bullet.look_at(get_global_mouse_position())
+	gunshot.play()
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_svwsx"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_fmvd2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_b1tu1"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_3ly4i"]
+resource_name = "jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_lwss3"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3oki5"]
+_data = {
+"RESET": SubResource("Animation_fmvd2"),
+"idle": SubResource("Animation_b1tu1"),
+"jump": SubResource("Animation_3ly4i"),
+"run": SubResource("Animation_lwss3")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = SubResource("GDScript_samcn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 9.09495e-13)
+texture = ExtResource("1_avcd7")
+hframes = 8
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_svwsx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_3oki5")
+}
+
+[node name="jump_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fgr8k")
+volume_db = -6.5
+
+[node name="Node2D" type="Node2D" parent="."]
+rotation = 2.19039
+
+[node name="tool_sprite" type="Sprite2D" parent="Node2D"]
+position = Vector2(12, 2)
+texture = ExtResource("3_ifhl5")
+
+[node name="Marker2D" type="Marker2D" parent="Node2D/tool_sprite"]
+position = Vector2(3.57642, -0.82728)
+
+[node name="gunshot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pkegu")
+volume_db = -15.0

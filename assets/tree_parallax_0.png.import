@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b38nn3wb1447i"
-path="res://.godot/imported/mushroom_sprite_sheet.png-a63de898acf6e7a88154143af6e08036.ctex"
+uid="uid://cwixwxgc08pv4"
+path="res://.godot/imported/tree_parallax_0.png-d96e5bbfcccc04e9eccdf554c5539665.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mushroom_sprite_sheet.png"
-dest_files=["res://.godot/imported/mushroom_sprite_sheet.png-a63de898acf6e7a88154143af6e08036.ctex"]
+source_file="res://assets/tree_parallax_0.png"
+dest_files=["res://.godot/imported/tree_parallax_0.png-d96e5bbfcccc04e9eccdf554c5539665.ctex"]
 
 [params]
 
