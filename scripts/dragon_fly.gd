@@ -7,7 +7,8 @@ extends CharacterBody2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var splat = $splat
 @onready var animation_player = $AnimationPlayer
-
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var is_dead = false
 
 var past_x = null
 
@@ -20,11 +21,15 @@ func _physics_process(delta):
 
 	past_x = global_position.x
 	
-	if path_follow:
+	if path_follow and !is_dead:
 		path_follow.progress_ratio +=  speed * delta
-
+	
+	if is_dead:
+		velocity.y += gravity * delta
+	move_and_slide()
 func die():
 	animation_player.play("die")
+	is_dead = true
 	
-func delete():
-	queue_free()
+	
+

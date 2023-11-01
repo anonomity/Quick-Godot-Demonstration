@@ -325,7 +325,9 @@ texture = ExtResource("3_70d0k")
 
 [sub_resource type="TileSet" id="TileSet_hmcrl"]
 physics_layer_0/collision_layer = 1
-physics_layer_1/collision_layer = 1
+physics_layer_0/collision_mask = 5
+physics_layer_1/collision_layer = 0
+physics_layer_1/collision_mask = 2
 physics_layer_1/physics_material = SubResource("PhysicsMaterial_c4ec7")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"

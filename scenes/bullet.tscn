@@ -25,6 +25,7 @@ func _on_timer_timeout():
 radius = 3.0
 
 [node name="bullet" type="Area2D"]
+collision_layer = 8
 collision_mask = 4
 script = SubResource("GDScript_kxbv3")
 
