@@ -397,8 +397,7 @@ rotation = -0.00503774
 progress = 1042.22
 rotates = false
 
-[node name="CharacterBody2D" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("4_f0oo7")]
-path_follow = NodePath("..")
+[node name="CharacterBody2D" parent="Path2D/PathFollow2D" instance=ExtResource("4_f0oo7")]
 speed = 0.1
 
 [node name="bullets" type="Node2D" parent="."]
@@ -412,7 +411,7 @@ position = Vector2(592.805, 167)
 rotates = false
 
 [node name="dragon" parent="Path2D2/PathFollow2D" node_paths=PackedStringArray("path_follow") instance=ExtResource("4_f0oo7")]
-path_follow = NodePath("..")
+path_follow = NodePath("../../../Path2D/PathFollow2D")
 speed = 0.1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
