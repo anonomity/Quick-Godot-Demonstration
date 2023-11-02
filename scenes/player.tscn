@@ -33,10 +33,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Handle Jump.
-	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
-		jump_sound.play()
-		velocity.y = JUMP_VELOCITY
+	
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -62,7 +59,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		var mouse_pos = get_global_mouse_position()
 		node_2d.look_at(mouse_pos)
@@ -74,7 +71,11 @@ func _input(event):
 	
 	if Input.is_action_just_pressed(\"shoot\"):
 		shoot()
-		
+	
+	# Handle Jump.
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		jump_sound.play()
+		velocity.y = JUMP_VELOCITY
 
 func shoot():
 	var bullet = _bullet.instantiate()
